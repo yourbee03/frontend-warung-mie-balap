@@ -64,6 +64,8 @@ function Receipt({ order }: { order: any }) {
         </table>
       </div>
       <div className="receipt-section">
+        <p className="receipt-row"><span>Subtotal</span><span>{formatCurrency(order.items?.reduce((sum: number, item: any) => sum + Number(item.subtotal), 0) || 0)}</span></p>
+        <p className="receipt-row"><span>Pajak PPN (10%)</span><span>{formatCurrency((order.items?.reduce((sum: number, item: any) => sum + Number(item.subtotal), 0) || 0) * 0.1)}</span></p>
         {order.shipping_cost > 0 && (
           <p className="receipt-row"><span>Ongkir</span><span>{formatCurrency(order.shipping_cost)}</span></p>
         )}
@@ -352,6 +354,15 @@ export default function OrderDetail() {
               <span>{formatCurrency(order.shipping_cost)}</span>
             </div>
           )}
+
+          <div className="border-t pt-4 flex justify-between">
+            <span className="text-gray-600">Subtotal</span>
+            <span>{formatCurrency(order.items?.reduce((sum: number, item: any) => sum + Number(item.subtotal), 0) || 0)}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-gray-600">Pajak PPN (10%)</span>
+            <span>{formatCurrency((order.items?.reduce((sum: number, item: any) => sum + Number(item.subtotal), 0) || 0) * 0.1)}</span>
+          </div>
 
           <div className="border-t pt-4">
             <div className="flex justify-between items-center">

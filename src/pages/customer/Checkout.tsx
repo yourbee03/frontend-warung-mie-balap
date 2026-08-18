@@ -117,7 +117,7 @@ export default function Checkout() {
     });
   };
 
-  const grandTotal = totalAmount + (shippingInfo?.cost || 0);
+  const grandTotal = totalAmount + (totalAmount * 0.1) + (shippingInfo?.cost || 0);
 
   return (
     <MainLayout>
@@ -325,6 +325,10 @@ export default function Checkout() {
                 <div className="flex justify-between">
                   <span className="text-gray-600">Subtotal</span>
                   <span>{formatCurrency(totalAmount)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Pajak PPN (10%)</span>
+                  <span>{formatCurrency(totalAmount * 0.1)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Ongkir</span>
