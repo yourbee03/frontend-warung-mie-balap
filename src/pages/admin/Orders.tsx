@@ -646,8 +646,8 @@ export default function AdminOrders() {
                                     openEditDialog(order);
                                   }}
                                 >
-                                  <Pencil className="h-4 w-4 mr-1" />
-                                  Edit Pesanan
+                                <Pencil className="h-4 w-4 mr-1" />
+                                   Ubah Pesanan
                                 </Button>
                               )}
                             </div>
@@ -716,7 +716,7 @@ export default function AdminOrders() {
                     : 'bg-white text-gray-500 border-gray-200 hover:border-primary/50'
                 }`}
               >
-                🥡 Take Away
+                🥡 Bawa Pulang
               </button>
               <button
                 onClick={() => setOrderType('qr')}
@@ -726,7 +726,7 @@ export default function AdminOrders() {
                     : 'bg-white text-gray-500 border-gray-200 hover:border-primary/50'
                 }`}
               >
-                🍜 Dine In
+                🍜 Makan di Tempat
               </button>
             </div>
 
@@ -943,7 +943,7 @@ export default function AdminOrders() {
         <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
           <DialogClose onClick={() => { setEditDialogOrder(null); setEditItems([]); setEditReason(''); setEditOptionPickerProduct(null); }} />
           <DialogHeader>
-            <DialogTitle>Edit Pesanan — {editDialogOrder?.order_number}</DialogTitle>
+            <DialogTitle>Ubah Pesanan — {editDialogOrder?.order_number}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 mt-4">
             <p className="text-sm text-gray-500">Ubah item pesanan: tambah, kurangi, atau hapus menu. Permintaan akan dikirim ke Owner untuk diverifikasi.</p>
@@ -1055,7 +1055,7 @@ export default function AdminOrders() {
 
             {/* Reason */}
             <div>
-              <label className="block text-sm font-medium mb-1">Alasan Edit (Opsional)</label>
+              <label className="block text-sm font-medium mb-1">Alasan Ubah (Opsional)</label>
               <Textarea
                 placeholder="Jelaskan alasan perubahan..."
                 value={editReason}
@@ -1086,7 +1086,7 @@ export default function AdminOrders() {
                 onClick={submitEditRequest}
                 disabled={editRequestMutation.isPending || editItems.length === 0}
               >
-                {editRequestMutation.isPending ? "Mengirim..." : "Kirim Permintaan Edit"}
+                {editRequestMutation.isPending ? "Mengirim..." : "Kirim Permintaan Ubah"}
               </Button>
             </div>
           </div>

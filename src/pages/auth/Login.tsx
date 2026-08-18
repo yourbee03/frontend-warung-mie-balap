@@ -19,19 +19,19 @@ export default function Login() {
   const loginMutation = useMutation({
     mutationFn: () => login(username, password, rememberMe),
     onSuccess: () => {
-      toast.success('Login berhasil!');
+      toast.success('Masuk berhasil!');
       navigate('/');
     },
     onError: () => {
-      toast.error('Username atau password salah');
+      toast.error('Nama pengguna atau kata sandi salah');
     },
   });
 
   const validate = () => {
     const newErrors: { username?: string; password?: string } = {};
-    if (!username.trim()) newErrors.username = 'Username wajib diisi';
-    if (!password) newErrors.password = 'Password wajib diisi';
-    else if (password.length < 6) newErrors.password = 'Password minimal 6 karakter';
+    if (!username.trim()) newErrors.username = 'Nama pengguna wajib diisi';
+    if (!password) newErrors.password = 'Kata sandi wajib diisi';
+    else if (password.length < 6) newErrors.password = 'Kata sandi minimal 6 karakter';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -63,7 +63,7 @@ export default function Login() {
           <form className="space-y-5" onSubmit={handleSubmit} noValidate>
             <div>
               <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-                Username
+                Nama Pengguna
               </label>
               <div className="mt-1 relative">
                 <Input
@@ -71,7 +71,7 @@ export default function Login() {
                   type="text"
                   value={username}
                   onChange={(e) => { setUsername(e.target.value); setErrors((p) => ({ ...p, username: undefined })); }}
-                  placeholder="Masukkan username"
+                  placeholder="Masukkan nama pengguna"
                   className={errors.username ? 'border-red-500 pr-10' : 'pr-10'}
                   autoComplete="username"
                 />
@@ -82,7 +82,7 @@ export default function Login() {
 
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
+                Kata Sandi
               </label>
               <div className="mt-1 relative">
                 <Input
@@ -90,7 +90,7 @@ export default function Login() {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => { setPassword(e.target.value); setErrors((p) => ({ ...p, password: undefined })); }}
-                  placeholder="Masukkan password"
+                  placeholder="Masukkan kata sandi"
                   className={errors.password ? 'border-red-500 pr-10' : 'pr-10'}
                   autoComplete="current-password"
                 />
@@ -116,7 +116,7 @@ export default function Login() {
                 <span className="text-sm text-gray-600">Ingat saya</span>
               </label>
               <Link to="/forgot-password" className="text-sm text-primary hover:text-red-700 font-medium">
-                Lupa password?
+                Lupa kata sandi?
               </Link>
             </div>
 

@@ -38,7 +38,7 @@ export default function Register() {
         phone: formData.phone || undefined,
       }),
     onSuccess: () => {
-      toast.success('Registrasi berhasil!');
+      toast.success('Pendaftaran berhasil!');
       navigate('/');
     },
     onError: () => {
@@ -51,9 +51,9 @@ export default function Register() {
     if (!formData.name.trim()) e.name = 'Nama wajib diisi';
     if (!formData.email.trim()) e.email = 'Email wajib diisi';
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) e.email = 'Email tidak valid';
-    if (!formData.password) e.password = 'Password wajib diisi';
-    else if (formData.password.length < 6) e.password = 'Password minimal 6 karakter';
-    if (formData.password !== formData.confirmPassword) e.confirmPassword = 'Password tidak cocok';
+    if (!formData.password) e.password = 'Kata sandi wajib diisi';
+    else if (formData.password.length < 6) e.password = 'Kata sandi minimal 6 karakter';
+    if (formData.password !== formData.confirmPassword) e.confirmPassword = 'Kata sandi tidak cocok';
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -101,10 +101,10 @@ export default function Register() {
 
             {/* Username */}
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username (Opsional)</label>
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700">Nama Pengguna (Opsional)</label>
               <div className="mt-1 relative">
                 <Input id="username" type="text" value={formData.username} onChange={(e) => set('username', e.target.value)}
-                  placeholder="Masukkan username" className="pr-10" />
+                  placeholder="Masukkan nama pengguna" className="pr-10" />
                 <AtSign className="absolute right-3 top-3 h-4 w-4 text-gray-400" />
               </div>
             </div>
@@ -132,10 +132,10 @@ export default function Register() {
 
             {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password *</label>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">Kata Sandi *</label>
               <div className="mt-1 relative">
                 <Input id="password" type={showPassword ? 'text' : 'password'} value={formData.password}
-                  onChange={(e) => set('password', e.target.value)} placeholder="Masukkan password"
+                  onChange={(e) => set('password', e.target.value)} placeholder="Masukkan kata sandi"
                   className={errors.password ? 'border-red-500 pr-10' : 'pr-10'} autoComplete="new-password" />
                 <button type="button" onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-3 text-gray-400 hover:text-gray-600">
@@ -161,10 +161,10 @@ export default function Register() {
 
             {/* Confirm Password */}
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Konfirmasi Password *</label>
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Konfirmasi Kata Sandi *</label>
               <div className="mt-1 relative">
                 <Input id="confirmPassword" type={showConfirm ? 'text' : 'password'} value={formData.confirmPassword}
-                  onChange={(e) => set('confirmPassword', e.target.value)} placeholder="Konfirmasi password"
+                  onChange={(e) => set('confirmPassword', e.target.value)} placeholder="Konfirmasi kata sandi"
                   className={errors.confirmPassword ? 'border-red-500 pr-10' : 'pr-10'} autoComplete="new-password" />
                 <button type="button" onClick={() => setShowConfirm(!showConfirm)}
                   className="absolute right-3 top-3 text-gray-400 hover:text-gray-600">

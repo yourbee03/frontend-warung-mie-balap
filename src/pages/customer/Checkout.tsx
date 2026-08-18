@@ -13,8 +13,8 @@ import { formatCurrency } from '../../lib/utils';
 import toast from 'react-hot-toast';
 
 const ORDER_SERVICE_OPTIONS: { value: 'takeaway' | 'delivery' | 'dine_in'; label: string; icon: any }[] = [
-  { value: 'takeaway', label: 'Take Away', icon: ShoppingBag },
-  { value: 'delivery', label: 'Diantar / Delivery', icon: Bike },
+  { value: 'takeaway', label: 'Bawa Pulang', icon: ShoppingBag },
+  { value: 'delivery', label: 'Diantar / Pengiriman', icon: Bike },
   { value: 'dine_in', label: 'Makan di Tempat', icon: Store },
 ];
 
@@ -122,7 +122,7 @@ export default function Checkout() {
   return (
     <MainLayout>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">Checkout</h1>
+        <h1 className="text-3xl font-bold mb-8">Bayar</h1>
 
         <div className="grid lg:grid-cols-3 gap-4 lg:gap-8">
           {/* Order Summary */}

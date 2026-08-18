@@ -101,7 +101,7 @@ export default function StickyCart() {
                 selectedCount > 0 ? 'hover:bg-red-700' : 'pointer-events-none opacity-50'
               }`}
             >
-              Checkout
+              Bayar
               <ChevronRight className="h-4 w-4" />
             </Link>
           </div>

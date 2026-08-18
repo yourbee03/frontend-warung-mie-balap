@@ -32,9 +32,9 @@ const defaultForm: UserFormData = {
 };
 
 const ROLE_MAP: Record<number, { label: string; variant: "default" | "success" | "secondary" | "destructive" | "outline" | "warning" }> = {
-  1: { label: "Customer", variant: "default" },
+  1: { label: "Pelanggan", variant: "default" },
   2: { label: "Admin", variant: "success" },
-  3: { label: "Owner", variant: "warning" },
+  3: { label: "Pemilik", variant: "warning" },
 };
 
 export default function AdminUsers() {
@@ -97,10 +97,10 @@ export default function AdminUsers() {
       return res.data;
     },
     onSuccess: () => {
-      toast.success("Role berhasil diupdate");
+      toast.success("Peran berhasil diperbarui");
       queryClient.invalidateQueries({ queryKey: ["admin-users"] });
     },
-    onError: (err: any) => toast.error(err.response?.data?.message || "Gagal mengubah role"),
+    onError: (err: any) => toast.error(err.response?.data?.message || "Gagal mengubah peran"),
   });
 
   const toggleActiveMutation = useMutation({
@@ -121,11 +121,11 @@ export default function AdminUsers() {
       return res.data;
     },
     onSuccess: () => {
-      toast.success("Password berhasil diupdate");
+                          toast.success("Kata Sandi berhasil diperbarui");
       setPasswordDialog(null);
       setNewPassword("");
     },
-    onError: (err: any) => toast.error(err.response?.data?.message || "Gagal mengubah password"),
+    onError: (err: any) => toast.error(err.response?.data?.message || "Gagal mengubah kata sandi"),
   });
 
   const deleteMutation = useMutation({
@@ -169,7 +169,7 @@ export default function AdminUsers() {
       return;
     }
     if (!editingUser && !form.password) {
-      toast.error("Password wajib diisi untuk pengguna baru");
+      toast.error("Kata sandi wajib diisi untuk pengguna baru");
       return;
     }
     if (editingUser) {
@@ -201,7 +201,7 @@ export default function AdminUsers() {
             <div className="flex items-center gap-4">
               <div className="relative flex-1 max-w-sm">
                 <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                <Input placeholder="Cari nama, email, atau username..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-9" />
+                    <Input placeholder="Cari nama, email, atau nama pengguna..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-9" />
               </div>
             </div>
           </CardHeader>
@@ -216,10 +216,10 @@ export default function AdminUsers() {
                   <thead>
                     <tr className="border-b">
                       <th className="text-left py-3 px-2 font-medium">Nama</th>
-                      <th className="text-left py-3 px-2 font-medium">Username</th>
+                        <th className="text-left py-3 px-2 font-medium">Nama Pengguna</th>
                       <th className="text-left py-3 px-2 font-medium">Email</th>
                       <th className="text-left py-3 px-2 font-medium">Telepon</th>
-                      <th className="text-left py-3 px-2 font-medium">Role</th>
+                        <th className="text-left py-3 px-2 font-medium">Peran</th>
                       <th className="text-left py-3 px-2 font-medium">Bergabung</th>
                       <th className="text-left py-3 px-2 font-medium">Status</th>
                       <th className="text-right py-3 px-2 font-medium">Aksi</th>
@@ -246,7 +246,7 @@ export default function AdminUsers() {
                         <td className="py-3 px-2">
                           <button onClick={() => cycleRole(user)} disabled={user.role_id === 3 && ownerCount <= 1} title={user.role_id === 3 && ownerCount <= 1 ? "Satu-satunya owner tidak bisa diubah" : "Klik untuk mengubah role"}>
                             <Badge variant={ROLE_MAP[user.role_id]?.variant || "default"} className={user.role_id !== 3 || ownerCount > 1 ? "cursor-pointer hover:opacity-80" : ""}>
-                              {ROLE_MAP[user.role_id]?.label || "Unknown"}
+                              {ROLE_MAP[user.role_id]?.label || "Tidak Diketahui"}
                             </Badge>
                           </button>
                         </td>
@@ -260,10 +260,10 @@ export default function AdminUsers() {
                         </td>
                         <td className="py-3 px-2">
                           <div className="flex items-center justify-end gap-1">
-                            <Button variant="ghost" size="icon" onClick={() => openEdit(user)} title="Edit">
+                            <Button variant="ghost" size="icon" onClick={() => openEdit(user)} title="Ubah">
                               <Pencil className="h-4 w-4" />
                             </Button>
-                            <Button variant="ghost" size="icon" onClick={() => setPasswordDialog({ userId: user.id, userName: user.name })} title="Ubah Password">
+                            <Button variant="ghost" size="icon" onClick={() => setPasswordDialog({ userId: user.id, userName: user.name })} title="Ubah Kata Sandi">
                               <Key className="h-4 w-4" />
                             </Button>
                             {user.role_id === 3 && ownerCount <= 1 ? null : deleteConfirm === user.id ? (
@@ -293,7 +293,7 @@ export default function AdminUsers() {
         <DialogContent className="max-w-md">
           <DialogClose onClick={() => setDialogOpen(false)} />
           <DialogHeader>
-            <DialogTitle>{editingUser ? "Edit Pengguna" : "Tambah Pengguna"}</DialogTitle>
+            <DialogTitle>{editingUser ? "Ubah Pengguna" : "Tambah Pengguna"}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 mt-4">
             <div>
@@ -301,8 +301,8 @@ export default function AdminUsers() {
               <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Nama lengkap" />
             </div>
             <div>
-              <label className="text-sm font-medium">Username</label>
-              <Input value={form.username} onChange={(e) => setForm({ ...form, username: e.target.value })} placeholder="Username (opsional)" />
+              <label className="text-sm font-medium">Nama Pengguna</label>
+              <Input value={form.username} onChange={(e) => setForm({ ...form, username: e.target.value })} placeholder="Nama Pengguna (opsional)" />
             </div>
             <div>
               <label className="text-sm font-medium">Email *</label>
@@ -314,9 +314,9 @@ export default function AdminUsers() {
             </div>
             {!editingUser && (
               <div>
-                <label className="text-sm font-medium">Password *</label>
+                <label className="text-sm font-medium">Kata Sandi *</label>
                 <div className="relative">
-                  <Input type={showPassword ? "text" : "password"} value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} placeholder="Password" className="pr-10" />
+                  <Input type={showPassword ? "text" : "password"} value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} placeholder="Kata Sandi" className="pr-10" />
                   <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-3 text-gray-400 hover:text-gray-600">
                     {showPassword ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
                   </button>
@@ -324,11 +324,11 @@ export default function AdminUsers() {
               </div>
             )}
             <div>
-              <label className="text-sm font-medium">Role</label>
+              <label className="text-sm font-medium">Peran</label>
               <select className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" value={form.role_id} onChange={(e) => setForm({ ...form, role_id: Number(e.target.value) })}>
-                <option value={1}>Customer</option>
+                <option value={1}>Pelanggan</option>
                 <option value={2}>Admin</option>
-                <option value={3}>Owner</option>
+                <option value={3}>Pemilik</option>
               </select>
             </div>
             <Button className="w-full" onClick={handleSubmit} disabled={createMutation.isPending || updateMutation.isPending}>
@@ -338,26 +338,26 @@ export default function AdminUsers() {
         </DialogContent>
       </Dialog>
 
-      {/* Password Dialog */}
+      {/* Dialog Kata Sandi */}
       <Dialog open={!!passwordDialog} onOpenChange={() => { setPasswordDialog(null); setNewPassword(""); }}>
         <DialogContent className="max-w-sm">
           <DialogClose onClick={() => { setPasswordDialog(null); setNewPassword(""); }} />
           <DialogHeader>
-            <DialogTitle>Ubah Password</DialogTitle>
+            <DialogTitle>Ubah Kata Sandi</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 mt-4">
-            <p className="text-sm text-gray-600">Ubah password untuk <strong>{passwordDialog?.userName}</strong></p>
+            <p className="text-sm text-gray-600">Ubah kata sandi untuk <strong>{passwordDialog?.userName}</strong></p>
             <div className="relative">
-              <Input type={showPassword ? "text" : "password"} value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder="Password baru (min. 6 karakter)" className="pr-10" />
+              <Input type={showPassword ? "text" : "password"} value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder="Kata Sandi baru (min. 6 karakter)" className="pr-10" />
               <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-3 text-gray-400 hover:text-gray-600">
                 {showPassword ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
               </button>
             </div>
             <Button className="w-full" onClick={() => {
-              if (!newPassword || newPassword.length < 6) { toast.error("Password minimal 6 karakter"); return; }
+              if (!newPassword || newPassword.length < 6) { toast.error("Kata sandi minimal 6 karakter"); return; }
               passwordMutation.mutate({ id: passwordDialog!.userId, password: newPassword });
             }} disabled={passwordMutation.isPending || newPassword.length < 6}>
-              {passwordMutation.isPending ? "Menyimpan..." : "Ubah Password"}
+              {passwordMutation.isPending ? "Menyimpan..." : "Ubah Kata Sandi"}
             </Button>
           </div>
         </DialogContent>

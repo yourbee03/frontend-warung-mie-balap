@@ -25,9 +25,9 @@ import type { OrderEditRequest, OrderAuditLog, PaginatedResponse } from "../../t
 
 const STATUS_FILTER = [
   { value: "", label: "Semua Status" },
-  { value: "pending", label: "Pending" },
-  { value: "approved", label: "Approved" },
-  { value: "rejected", label: "Rejected" },
+  { value: "pending", label: "Menunggu" },
+  { value: "approved", label: "Disetujui" },
+  { value: "rejected", label: "Ditolak" },
 ];
 
 const getStatusBadge = (status: string) => {
@@ -105,7 +105,7 @@ export default function AdminEditRequests() {
     <AdminLayout>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold">Edit Pesanan & Verifikasi</h2>
+          <h2 className="text-2xl font-bold">Ubah Pesanan & Verifikasi</h2>
           <span className="text-sm text-gray-500">{requests.length} permintaan</span>
         </div>
 
@@ -131,7 +131,7 @@ export default function AdminEditRequests() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Pencil className="h-5 w-5" />
-              Daftar Permintaan Edit
+              Daftar Permintaan Ubah
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -202,7 +202,7 @@ export default function AdminEditRequests() {
                     <div className="flex items-center justify-between gap-2 flex-wrap">
                       <div className="text-sm">
                         <span className="font-semibold">{log.actor_name || `User #${log.actor_id}`}</span>
-                        <span className="text-gray-500"> ({log.actor_role === 'owner' ? 'Owner/Super Admin' : 'Admin'})</span>
+                        <span className="text-gray-500"> ({log.actor_role === 'owner' ? 'Pemilik/Super Admin' : 'Admin'})</span>
                         {" "}—{" "}
                         <span className="text-gray-700">{log.description || log.action}</span>
                       </div>
@@ -224,7 +224,7 @@ export default function AdminEditRequests() {
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogClose onClick={() => setDetail(null)} />
           <DialogHeader>
-            <DialogTitle>Detail Permintaan Edit — {detail?.order_number}</DialogTitle>
+            <DialogTitle>Detail Permintaan Ubah — {detail?.order_number}</DialogTitle>
           </DialogHeader>
           {detail && (
             <div className="mt-4 space-y-4">
@@ -277,7 +277,7 @@ export default function AdminEditRequests() {
         <DialogContent>
           <DialogClose onClick={() => { setVerifyTarget(null); setVerifyReason(""); }} />
           <DialogHeader>
-            <DialogTitle>Verifikasi Permintaan Edit — {verifyTarget?.order_number}</DialogTitle>
+            <DialogTitle>Verifikasi Permintaan Ubah — {verifyTarget?.order_number}</DialogTitle>
           </DialogHeader>
           <div className="mt-4 space-y-4">
             <div className="flex items-center gap-2">

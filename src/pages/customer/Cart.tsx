@@ -126,24 +126,24 @@ export default function Cart() {
               isAuthenticated ? (
                 <Link to="/checkout">
                   <Button className="w-full" size="lg">
-                    Checkout ({selectedCount} item)
+                    Bayar ({selectedCount} item)
                   </Button>
                 </Link>
               ) : (
                 <div className="space-y-2">
                   <Link to="/login">
                     <Button className="w-full" size="lg">
-                      Login untuk Checkout
+                      Masuk untuk Bayar
                     </Button>
                   </Link>
                   <p className="text-xs text-gray-500 text-center">
-                    Anda harus login untuk melakukan pemesanan
+                    Anda harus masuk untuk melakukan pemesanan
                   </p>
                 </div>
               )
             ) : (
               <Button className="w-full" size="lg" disabled>
-                Pilih item untuk checkout
+                Pilih item untuk membayar
               </Button>
             )}
           </div>

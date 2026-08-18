@@ -15,9 +15,9 @@ const getServiceTypeLabel = (order: any) => {
   if (order.order_service_type) {
     return ORDER_SERVICE_TYPE[order.order_service_type as keyof typeof ORDER_SERVICE_TYPE] || order.order_service_type;
   }
-  if (order.order_type === 'online') return 'Online';
-  if (order.order_type === 'takeaway') return 'Take Away';
-  return 'Dine In (QR)';
+  if (order.order_type === 'online') return 'Daring';
+  if (order.order_type === 'takeaway') return 'Bawa Pulang';
+  return 'Makan di Tempat (QR)';
 };
 
 function Receipt({ order }: { order: any }) {
@@ -297,7 +297,7 @@ export default function OrderDetail() {
                     {formatCurrency(qrData.amount)}
                   </p>
                   <p className="text-xs text-gray-500 mt-2">
-                    QR Code ID: {qrData.qr_code_id}
+                    ID Kode QR: {qrData.qr_code_id}
                   </p>
                   <Button
                     onClick={() => simulatePaymentMutation.mutate()}

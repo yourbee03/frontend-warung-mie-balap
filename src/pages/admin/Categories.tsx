@@ -193,7 +193,7 @@ export default function AdminCategories() {
         <DialogContent className="max-w-md">
           <DialogClose onClick={() => setDialogOpen(false)} />
           <DialogHeader>
-            <DialogTitle>{editingCategory ? "Edit Kategori" : "Tambah Kategori"}</DialogTitle>
+            <DialogTitle>{editingCategory ? "Ubah Kategori" : "Tambah Kategori"}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 mt-4">
             <div>

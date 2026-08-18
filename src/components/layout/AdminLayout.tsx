@@ -20,11 +20,11 @@ import { useAdminNotifications } from "../../services/adminNotification.service"
 import { formatDateTime } from "../../lib/utils";
 
 const baseMenuItems: { href: string; label: string; icon: any; badge: string | false }[] = [
-  { href: "/admin", label: "Dashboard", icon: LayoutDashboard, badge: false },
+  { href: "/admin", label: "Dasbor", icon: LayoutDashboard, badge: false },
   { href: "/admin/products", label: "Produk", icon: Package, badge: false },
   { href: "/admin/categories", label: "Kategori", icon: Tag, badge: false },
   { href: "/admin/orders", label: "Pesanan", icon: ShoppingBag, badge: "orders" },
-  { href: "/admin/edit-requests", label: "Edit Pesanan", icon: Pencil, badge: "edits" },
+  { href: "/admin/edit-requests", label: "Ubah Pesanan", icon: Pencil, badge: "edits" },
   { href: "/admin/tables", label: "Meja & QR", icon: Table, badge: false },
   { href: "/admin/settings", label: "Pengaturan", icon: Settings, badge: false },
 ];
@@ -124,7 +124,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             >
               <Menu className="h-5 w-5" />
             </Button>
-            <h1 className="text-lg font-semibold">Admin Panel</h1>
+            <h1 className="text-lg font-semibold">Panel Admin</h1>
           </div>
 
           {/* Notification Bell */}

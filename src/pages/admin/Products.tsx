@@ -570,7 +570,7 @@ export default function AdminProducts() {
         <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
           <DialogClose onClick={() => setDialogOpen(false)} />
           <DialogHeader>
-            <DialogTitle>{editingProduct ? "Edit Produk" : "Tambah Produk"}</DialogTitle>
+            <DialogTitle>{editingProduct ? "Ubah Produk" : "Tambah Produk"}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 mt-4">
             <div>
@@ -748,7 +748,7 @@ export default function AdminProducts() {
                                 type="button"
                                 onClick={() => startEditOption(index)}
                                 className="p-1 text-blue-500 hover:bg-blue-50 rounded"
-                                title="Edit opsi"
+                                title="Ubah opsi"
                               >
                                 <Pencil className="h-3.5 w-3.5" />
                               </button>

@@ -25,9 +25,9 @@ export default function Profile() {
     return (
       <MainLayout>
         <div className="container mx-auto px-4 py-16 text-center">
-          <p className="text-gray-500 mb-4">Silakan login untuk melihat profil</p>
+          <p className="text-gray-500 mb-4">Silakan masuk untuk melihat profil</p>
           <a href="/login">
-            <Button>Login</Button>
+            <Button>Masuk</Button>
           </a>
         </div>
       </MainLayout>
@@ -43,7 +43,7 @@ export default function Profile() {
         <div className="flex gap-2 mb-6 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 flex-nowrap scrollbar-hide">
           {([
             { key: 'profile', label: 'Profil', icon: User },
-            { key: 'password', label: 'Ubah Password', icon: Lock },
+            { key: 'password', label: 'Ubah Kata Sandi', icon: Lock },
             { key: 'orders', label: 'Riwayat Pesanan', icon: Package },
           ] as const).map((tab) => (
             <button
@@ -117,7 +117,7 @@ function ProfileTab({ auth }: { auth: ReturnType<typeof useAuth> }) {
           </div>
           {!isEditing && (
             <Button onClick={() => setIsEditing(true)} className="w-full">
-              Edit Profil
+              Ubah Profil
             </Button>
           )}
         </CardContent>
@@ -127,7 +127,7 @@ function ProfileTab({ auth }: { auth: ReturnType<typeof useAuth> }) {
       {isEditing && (
         <Card>
           <CardHeader>
-            <CardTitle>Edit Profil</CardTitle>
+            <CardTitle>Ubah Profil</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
@@ -164,8 +164,8 @@ function ProfileTab({ auth }: { auth: ReturnType<typeof useAuth> }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Card>
           <CardContent className="p-4 text-center">
-            <p className="text-2xl font-bold text-primary">{user?.role_id === 3 ? 'Owner' : user?.role_id === 2 ? 'Admin' : 'Customer'}</p>
-            <p className="text-xs text-gray-500 mt-1">Role Akun</p>
+            <p className="text-2xl font-bold text-primary">{user?.role_id === 3 ? 'Pemilik' : user?.role_id === 2 ? 'Admin' : 'Pelanggan'}</p>
+            <p className="text-xs text-gray-500 mt-1">Peran Akun</p>
           </CardContent>
         </Card>
         <Card>
@@ -178,7 +178,7 @@ function ProfileTab({ auth }: { auth: ReturnType<typeof useAuth> }) {
 
       <Button onClick={logout} variant="outline" className="w-full text-red-600 border-red-600 hover:bg-red-50">
         <LogOut className="h-4 w-4 mr-2" />
-        Logout
+        Keluar
       </Button>
     </div>
   );
@@ -198,17 +198,17 @@ function PasswordTab({ auth }: { auth: ReturnType<typeof useAuth> }) {
   };
 
   const handleSave = async () => {
-    if (!form.current) { toast.error('Password lama wajib diisi'); return; }
-    if (!form.newPass) { toast.error('Password baru wajib diisi'); return; }
-    if (form.newPass.length < 6) { toast.error('Password baru minimal 6 karakter'); return; }
-    if (form.newPass !== form.confirm) { toast.error('Konfirmasi password tidak cocok'); return; }
+    if (!form.current) { toast.error('Kata sandi lama wajib diisi'); return; }
+    if (!form.newPass) { toast.error('Kata sandi baru wajib diisi'); return; }
+    if (form.newPass.length < 6) { toast.error('Kata sandi baru minimal 6 karakter'); return; }
+    if (form.newPass !== form.confirm) { toast.error('Konfirmasi kata sandi tidak cocok'); return; }
     setSaving(true);
     try {
       await changePassword(form.current, form.newPass);
-      toast.success('Password berhasil diubah');
+      toast.success('Kata sandi berhasil diubah');
       setForm({ current: '', newPass: '', confirm: '' });
     } catch {
-      toast.error('Password lama salah');
+      toast.error('Kata sandi lama salah');
     } finally {
       setSaving(false);
     }
@@ -218,14 +218,14 @@ function PasswordTab({ auth }: { auth: ReturnType<typeof useAuth> }) {
     <div className="max-w-lg">
       <Card>
         <CardHeader>
-          <CardTitle>Ubah Password</CardTitle>
+          <CardTitle>Ubah Kata Sandi</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <label className="text-sm font-medium">Password Lama</label>
+            <label className="text-sm font-medium">Kata Sandi Lama</label>
             <div className="mt-1 relative">
               <Input type={showCurrent ? 'text' : 'password'} value={form.current}
-                onChange={(e) => setForm({ ...form, current: e.target.value })} placeholder="Masukkan password lama" className="pr-10" />
+                onChange={(e) => setForm({ ...form, current: e.target.value })} placeholder="Masukkan kata sandi lama" className="pr-10" />
               <button type="button" onClick={() => setShowCurrent(!showCurrent)}
                 className="absolute right-3 top-3 text-gray-400 hover:text-gray-600">
                 {showCurrent ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
@@ -233,10 +233,10 @@ function PasswordTab({ auth }: { auth: ReturnType<typeof useAuth> }) {
             </div>
           </div>
           <div>
-            <label className="text-sm font-medium">Password Baru</label>
+            <label className="text-sm font-medium">Kata Sandi Baru</label>
             <div className="mt-1 relative">
               <Input type={showNew ? 'text' : 'password'} value={form.newPass}
-                onChange={(e) => setForm({ ...form, newPass: e.target.value })} placeholder="Masukkan password baru" className="pr-10" />
+                onChange={(e) => setForm({ ...form, newPass: e.target.value })} placeholder="Masukkan kata sandi baru" className="pr-10" />
               <button type="button" onClick={() => setShowNew(!showNew)}
                 className="absolute right-3 top-3 text-gray-400 hover:text-gray-600">
                 {showNew ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
@@ -256,16 +256,16 @@ function PasswordTab({ auth }: { auth: ReturnType<typeof useAuth> }) {
             )}
           </div>
           <div>
-            <label className="text-sm font-medium">Konfirmasi Password Baru</label>
+            <label className="text-sm font-medium">Konfirmasi Kata Sandi Baru</label>
             <Input type="password" value={form.confirm}
-              onChange={(e) => setForm({ ...form, confirm: e.target.value })} placeholder="Ulangi password baru" className="mt-1" />
+              onChange={(e) => setForm({ ...form, confirm: e.target.value })} placeholder="Ulangi kata sandi baru" className="mt-1" />
             {form.confirm && form.newPass !== form.confirm && (
-              <p className="mt-1 text-xs text-red-500">Password tidak cocok</p>
+              <p className="mt-1 text-xs text-red-500">Kata Sandi tidak cocok</p>
             )}
           </div>
           <Button onClick={handleSave} disabled={saving} className="w-full">
             {saving ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Lock className="h-4 w-4 mr-2" />}
-            Ubah Password
+            Ubah Kata Sandi
           </Button>
         </CardContent>
       </Card>

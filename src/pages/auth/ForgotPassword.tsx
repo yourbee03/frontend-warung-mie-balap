@@ -20,10 +20,10 @@ export default function ForgotPassword() {
       if (response.data?.resetToken) {
         setResetToken(response.data.resetToken);
       }
-      toast.success('Link reset password telah dikirim!');
+      toast.success('Tautan atur ulang kata sandi telah dikirim!');
     },
     onError: () => {
-      toast.error('Gagal mengirim link reset password');
+      toast.error('Gagal mengirim tautan atur ulang kata sandi');
     },
   });
 
@@ -56,19 +56,19 @@ export default function ForgotPassword() {
               <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
               <h2 className="text-xl font-bold text-gray-900 mb-2">Email Terkirim!</h2>
               <p className="text-sm text-gray-600 mb-6">
-                Kami telah mengirim link reset password ke <strong>{email}</strong>.
+                Kami telah mengirim tautan atur ulang kata sandi ke <strong>{email}</strong>.
                 Silakan cek email Anda.
               </p>
 
               {resetToken && (
                 <div className="mb-6 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                  <p className="text-xs text-yellow-700 font-medium mb-1">Demo Mode - Token Reset:</p>
+                  <p className="text-xs text-yellow-700 font-medium mb-1">Mode Demo - Token Reset:</p>
                   <p className="text-xs text-yellow-600 break-all font-mono">{resetToken}</p>
                   <Link
                     to={`/reset-password?token=${resetToken}`}
                     className="mt-2 inline-block text-xs text-primary hover:underline"
                   >
-                    Klik di sini untuk reset password
+                    Klik di sini untuk mengatur ulang kata sandi
                   </Link>
                 </div>
               )}
@@ -76,7 +76,7 @@ export default function ForgotPassword() {
               <Link to="/login">
                 <Button className="w-full" variant="outline">
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  Kembali ke Login
+                  Kembali ke Masuk
                 </Button>
               </Link>
             </div>
@@ -93,10 +93,10 @@ export default function ForgotPassword() {
           <h1 className="text-3xl font-bold text-primary">🍜 Warung Mie Balap</h1>
         </Link>
         <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
-          Lupa Password?
+          Lupa Kata Sandi?
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Masukkan email Anda dan kami akan mengirim link untuk reset password.
+          Masukkan email Anda dan kami akan mengirim tautan untuk mengatur ulang kata sandi.
         </p>
       </div>
 
@@ -134,13 +134,13 @@ export default function ForgotPassword() {
                   Mengirim...
                 </>
               ) : (
-                'Kirim Link Reset Password'
+                'Kirim Tautan Atur Ulang Kata Sandi'
               )}
             </Button>
 
             <Link to="/login" className="block text-center text-sm text-primary hover:underline">
               <ArrowLeft className="h-4 w-4 inline mr-1" />
-              Kembali ke Login
+              Kembali ke Masuk
             </Link>
           </form>
         </div>

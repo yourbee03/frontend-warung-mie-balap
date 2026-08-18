@@ -23,21 +23,21 @@ export const PAYMENT_METHOD = {
 } as const;
 
 export const ORDER_TYPE = {
-  online: 'Online',
-  qr: 'QR Code',
-  takeaway: 'Take Away',
+  online: 'Daring',
+  qr: 'Kode QR',
+  takeaway: 'Bawa Pulang',
 } as const;
 
 export const ORDER_SERVICE_TYPE = {
-  takeaway: 'Take Away',
-  delivery: 'Diantar / Delivery',
-  dine_in: 'Makan di Tempat / Dine In',
+  takeaway: 'Bawa Pulang',
+  delivery: 'Diantar',
+  dine_in: 'Makan di Tempat',
 } as const;
 
 export const EDIT_REQUEST_STATUS = {
-  pending: 'Pending',
-  approved: 'Approved',
-  rejected: 'Rejected',
+  pending: 'Menunggu',
+  approved: 'Disetujui',
+  rejected: 'Ditolak',
 } as const;
 
 export const BANK_INFO = [

@@ -66,7 +66,7 @@ function TableQRImage({ tableId }: { tableId: number }) {
       <div className="flex justify-center">
         <Button variant="outline" size="sm" onClick={handleDownload} className="flex items-center gap-1">
           <Download className="h-3 w-3" />
-          Download QR
+          Unduh QR
         </Button>
       </div>
     </div>
@@ -200,7 +200,7 @@ export default function AdminTables() {
     <AdminLayout>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold">Meja & QR Code</h2>
+          <h2 className="text-2xl font-bold">Meja & Kode QR</h2>
           <Button onClick={openAdd} className="flex items-center gap-2">
             <Plus className="h-4 w-4" />
             Tambah Meja
@@ -243,7 +243,7 @@ export default function AdminTables() {
                         onClick={() => openAssign(table.id)}
                       >
                         <LinkIcon className="h-3 w-3" />
-                        Assign Produk
+                        Tetapkan Produk
                       </Button>
                       <Button variant="ghost" size="icon" onClick={() => openEdit(table)}>
                         <Pencil className="h-4 w-4" />
@@ -280,7 +280,7 @@ export default function AdminTables() {
         <DialogContent className="max-w-md">
           <DialogClose onClick={() => setDialogOpen(false)} />
           <DialogHeader>
-            <DialogTitle>{editingTable ? "Edit Meja" : "Tambah Meja"}</DialogTitle>
+            <DialogTitle>{editingTable ? "Ubah Meja" : "Tambah Meja"}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 mt-4">
             <div>
@@ -315,7 +315,7 @@ export default function AdminTables() {
         <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
           <DialogClose onClick={() => setAssignDialogOpen(false)} />
           <DialogHeader>
-            <DialogTitle>Assign Produk ke Meja</DialogTitle>
+            <DialogTitle>Tetapkan Produk ke Meja</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 mt-4">
             {!products || products.length === 0 ? (
@@ -343,7 +343,7 @@ export default function AdminTables() {
               onClick={() => assignMutation.mutate(assignForm)}
               disabled={assignMutation.isPending || assignForm.product_ids.length === 0}
             >
-              {assignMutation.isPending ? "Menyimpan..." : `Assign ${assignForm.product_ids.length} Produk`}
+              {assignMutation.isPending ? "Menyimpan..." : `Tetapkan ${assignForm.product_ids.length} Produk`}
             </Button>
           </div>
         </DialogContent>
