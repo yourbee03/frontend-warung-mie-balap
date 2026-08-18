@@ -62,4 +62,9 @@ export const orderService = {
     const response = await api.get(`/payment-gateway/status/${orderId}`);
     return response.data;
   },
+
+  simulatePayment: async (orderId: number): Promise<ApiResponse<any>> => {
+    const response = await api.post('/payment-gateway/simulate', { order_id: orderId });
+    return response.data;
+  },
 };

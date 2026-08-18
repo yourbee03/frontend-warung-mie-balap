@@ -1,6 +1,6 @@
 import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
-import { ArrowLeft, Printer, QrCode, CheckCircle, Loader2 } from 'lucide-react';
+import { ArrowLeft, Printer, QrCode, CheckCircle, Loader2, FlaskConical } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import MainLayout from '../../components/layout/MainLayout';
 import { Button } from '../../components/ui/Button';
@@ -112,6 +112,17 @@ export default function OrderDetail() {
     },
     onError: () => {
       toast.error('Gagal membuat QR Code');
+    },
+  });
+
+  const simulatePaymentMutation = useMutation({
+    mutationFn: () => orderService.simulatePayment(parseInt(id!)),
+    onSuccess: () => {
+      toast.success('Pembayaran berhasil disimulasi!');
+      queryClient.invalidateQueries({ queryKey: ['order', id] });
+    },
+    onError: () => {
+      toast.error('Gagal simulasi pembayaran');
     },
   });
 
@@ -286,6 +297,19 @@ export default function OrderDetail() {
                   <p className="text-xs text-gray-500 mt-2">
                     QR Code ID: {qrData.qr_code_id}
                   </p>
+                  <Button
+                    onClick={() => simulatePaymentMutation.mutate()}
+                    disabled={simulatePaymentMutation.isPending}
+                    variant="outline"
+                    className="mt-4 border-orange-400 text-orange-600 hover:bg-orange-50"
+                  >
+                    {simulatePaymentMutation.isPending ? (
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    ) : (
+                      <FlaskConical className="h-4 w-4 mr-2" />
+                    )}
+                    Simulasi Bayar
+                  </Button>
                 </div>
               )}
             </div>
